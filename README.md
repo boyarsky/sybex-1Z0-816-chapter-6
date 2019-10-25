@@ -8,6 +8,25 @@ Also see:
 * To buy the book: [Amazon](https://www.amazon.com/Oracle-Certified-Professional-Programmer-Study/dp/1119617626/ref=sr_1_5?keywords=jeanne+boyarsky+ocp+11&qid=1572008221&sr=8-5)
 * The [code examples for Appendix A](https://github.com/boyarsky/sybex-1Z0-815-chapter-11) same examples as Chapter 11 of our iZ0-815 book
 
+# Analyzing JDK Dependencies
+## Using jdeps
+See the identify-dependencies folder for the code.
+
+Compile Dino jar
+```
+javac zoo/dinos/*.java
+```
+Create zoo.dino.jar for Dino module
+```
+jar -cvf zoo.dino.jar .
+```
+Run jdeps commands
+```
+jdeps zoo.dino.jar
+jdeps -s zoo.dino.jar
+jdeps --jdk-internals zoo.dino.jar
+```
+
 # Migrating an Application
 ## Failing to Compile with a Cyclic Dependency
 See the cyclic-dependencies folder for the code. 
