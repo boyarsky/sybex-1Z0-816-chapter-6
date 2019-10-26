@@ -9,8 +9,9 @@ Also see:
 * The [code examples for Appendix A](https://github.com/boyarsky/sybex-1Z0-815-chapter-11) same examples as Chapter 11 of our iZ0-815 book
 
 # Analyzing JDK Dependencies
-## Using jdeps
 See the identify-dependencies folder for the code.
+
+## Using jdeps
 
 Compile Dino jar
 ```
@@ -28,8 +29,9 @@ jdeps --jdk-internals zoo.dino.jar
 ```
 
 # Migrating an Application
-## Failing to Compile with a Cyclic Dependency
 See the cyclic-dependencies folder for the code. 
+
+## Failing to Compile with a Cyclic Dependency
 
 Compile Butterfly module
 ```
@@ -50,4 +52,27 @@ jar -cvf mods/zoo.caterpillar.jar -C caterpillarModule/ .
 Compile Butterfly again to introduce cyclic dependency
 ```
 javac -p mods -d butterflyModule butterflyModule/zoo/butterfly/Butterfly.java butterflyModule/module-info.java
+```
+
+# Creating a Service
+See the services folder for the code.
+
+## Declaring the Interface
+Compile interface module
+```
+javac -d interfaceModule interfaceModule/zoo/tours/api/*.java interfaceModule/module-info.java
+```
+Create zoo.tours.api.jar for the API module
+```
+jar -cvf mods/zoo.tours.api.jar -C interfaceModule/ .
+```
+
+## Creating the Implementation
+Compile implementation module
+```
+javac -p mods -d implementationModule implementationModule/zoo/tours/agency/*.java implementationModule/module-info.java
+```
+Create zoo.tours.agency.jar for the implementation module
+```
+jar -cvf mods/zoo.tours.agency.jar -C implementationModule/ .
 ```
