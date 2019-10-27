@@ -57,22 +57,64 @@ javac -p mods -d butterflyModule butterflyModule/zoo/butterfly/Butterfly.java bu
 # Creating a Service
 See the services folder for the code.
 
-## Declaring the Interface
-Compile interface module
+## Declaring the Service Provider Interface
+Compile service provider interface module
 ```
-javac -d interfaceModule interfaceModule/zoo/tours/api/*.java interfaceModule/module-info.java
+javac -d serviceProviderInterfaceModule serviceProviderInterfaceModule/zoo/tours/api/*.java serviceProviderInterfaceModule/module-info.java
 ```
-Create zoo.tours.api.jar for the API module
+Create zoo.tours.api.jar for the service provider interface module
 ```
-jar -cvf mods/zoo.tours.api.jar -C interfaceModule/ .
+jar -cvf mods/zoo.tours.api.jar -C serviceProviderInterfaceModule/ .
 ```
 
-## Creating the Implementation
-Compile implementation module
+## Creating a Service Locator
+Compile service locator module
 ```
-javac -p mods -d implementationModule implementationModule/zoo/tours/agency/*.java implementationModule/module-info.java
+javac -p mods -d serviceLocatorModule serviceLocatorModule/zoo/tours/reservations/*.java serviceLocatorModule/module-info.java
 ```
-Create zoo.tours.agency.jar for the implementation module
+Create zoo.tours.reservations.jar for the service locator module
 ```
-jar -cvf mods/zoo.tours.agency.jar -C implementationModule/ .
+jar -cvf mods/zoo.tours.reservations.jar -C serviceLocatorModule/ .
+```
+
+## Invoking from a Consumer
+Compile consumer module
+```
+javac -p mods -d consumerModule consumerModule/zoo/visitor/*.java consumerModule/module-info.java
+```
+Create zoo.visitor.jar for the visitor module
+```
+jar -cvf mods/zoo.visitor.jar -C consumerModule/ .
+```
+Run Tourist class
+```
+java -p mods -m zoo.visitor/zoo.visitor.Tourist
+```
+
+## Adding a Service Provider
+Compile service provider module
+```
+javac -p mods -d serviceProviderModule serviceProviderModule/zoo/tours/agency/*.java serviceProviderModule/module-info.java
+```
+Create zoo.tours.agency.jar for the service provider module
+```
+jar -cvf mods/zoo.tours.agency.jar -C serviceProviderModule/ .
+```
+Run Tourist class
+```
+java -p mods -m zoo.visitor/zoo.visitor.Tourist
+```
+
+## Merging Service Locator and Consumer
+Compile multi-purpose module
+```
+javac -p mods -d multiPurposeModule multiPurposeModule/zoo/tours/hybrid/*.java multiPurposeModule/module-info.java
+```
+Create zoo.tours.hybrid.jar for the multi-purpose module
+```
+jar -cvf mods/zoo.tours.hybrid.jar -C multiPurposeModule/ .
+```
+Run TourLengthCheck class
+```
+java -p mods -m zoo.tours.hybrid/zoo.tours.hybrid.TourLengthCheck
 ```

@@ -10,4 +10,9 @@ public class TourImpl implements Tour {
     public int length() {
         return 120;
     }
+    public Souvenir getSouvenir() {
+        Souvenir gift = new Souvenir();
+        gift.setDescription("stuffed animal");
+        return gift;
+    }
 }

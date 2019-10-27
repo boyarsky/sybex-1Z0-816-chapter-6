@@ -4,4 +4,6 @@ public interface Tour {
 
     String name();
     int length();
+    Souvenir getSouvenir();
+
 }
